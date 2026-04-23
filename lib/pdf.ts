@@ -51,7 +51,7 @@ export async function generateCertificate(data: {
       .replace(/{{CERT_ID}}/g, certId)
       .replace(/{{CERT_HASH}}/g, data.certHash);
 
-    // Launch browser & generate PDF
+    console.log('HTML template processed, launching browser...');
     let browser;
     try {
       browser = await puppeteer.launch({
@@ -67,15 +67,47 @@ export async function generateCertificate(data: {
           '--disable-renderer-backgrounding',
           '--disable-extensions',
           '--disable-default-apps',
-          '--enable-logging',
-          '--v=1'
+          '--disable-web-security',
+          '--disable-features=VizDisplayCompositor',
+          '--font-render-hinting=none',
+          '--disable-ipc-flooding-protection',
+          '--memory-pressure-off',
+          '--disable-background-media-download',
+          '--disable-component-extensions-with-background-pages',
+          '--disable-features=TranslateUI',
+          '--disable-ipc-flooding-protection',
+          '--max_old_space_size=4096',
+          '--disable-software-rasterizer',
+          '--disable-background-networking'
         ],
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH // Allow override
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+        timeout: 120000,
+        ignoreDefaultArgs: ['--disable-extensions'],
+        // Try without single-process for Windows
+        // singleProcess: false
       });
       
       const page = await browser.newPage();
+      console.log('Page created, setting viewport...');
       await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 1 });
-      await page.setContent(html, { waitUntil: 'networkidle0', timeout: 60000 });
+      
+      // Navigate to blank page first
+      await page.goto('about:blank');
+      console.log('Navigated to blank page');
+      
+      // Set user agent to avoid issues
+      await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+      
+      console.log('Setting page content...');
+      await page.setContent(html, { 
+        waitUntil: 'domcontentloaded',
+        timeout: 30000 
+      });
+      console.log('Page content set successfully');
+      
+      // Wait a bit for fonts/images to load
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Wait completed, starting PDF generation...');
       
       const pdf = await page.pdf({
         format: 'A4',
@@ -85,8 +117,12 @@ export async function generateCertificate(data: {
           right: '20px',
           bottom: '20px',
           left: '20px'
-        }
+        },
+        preferCSSPageSize: true,
+        displayHeaderFooter: false,
+        timeout: 30000 // Add timeout to PDF generation
       });
+      console.log('PDF generated successfully, size:', pdf.length);
 
       await browser.close();
       return pdf;

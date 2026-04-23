@@ -222,21 +222,31 @@ export function Web3Provider({ children }: Web3ProviderProps) {
       // If the network doesn't exist, add it
       if (switchError.code === 4902) {
         try {
+          const networkConfig = expectedChainId === 11155111 ? {
+            chainId: chainIdHex,
+            chainName: "Sepolia Testnet",
+            rpcUrls: [process.env.NEXT_PUBLIC_RPC_URL || "https://sepolia.infura.io/v3/YOUR_INFURA_KEY"],
+            nativeCurrency: {
+              name: "SepoliaETH",
+              symbol: "ETH",
+              decimals: 18,
+            },
+            blockExplorerUrls: ["https://sepolia.etherscan.io"],
+          } : {
+            chainId: chainIdHex,
+            chainName: "Local Hardhat",
+            rpcUrls: [process.env.NEXT_PUBLIC_RPC_URL || "http://127.0.0.1:8545"],
+            nativeCurrency: {
+              name: "Ethereum",
+              symbol: "ETH",
+              decimals: 18,
+            },
+          };
+
           await window.ethereum.request?.(
             {
               method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: chainIdHex,
-                  chainName: "Local Hardhat",
-                  rpcUrls: [process.env.NEXT_PUBLIC_RPC_URL || "http://127.0.0.1:8545"],
-                  nativeCurrency: {
-                    name: "Ethereum",
-                    symbol: "ETH",
-                    decimals: 18,
-                  },
-                },
-              ],
+              params: [networkConfig],
             } as any
           );
           setIsWrongNetwork(false);

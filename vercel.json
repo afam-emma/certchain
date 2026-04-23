@@ -1,3 +1,14 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "functions": {
+    "app/api/certificates/[id]/route.ts": {
+      "maxDuration": 30
+    },
+    "app/api/certificates/bulk/route.ts": {
+      "maxDuration": 30
+    }
+  },
+  "regions": ["iad1"],
+  "buildCommand": "npm run build",
+  "installCommand": "npm install"
 }
