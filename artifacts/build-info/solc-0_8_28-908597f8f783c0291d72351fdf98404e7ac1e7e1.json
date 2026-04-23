@@ -1,0 +1,46 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-908597f8f783c0291d72351fdf98404e7ac1e7e1",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "userSourceNameMap": {
+    "contracts/CertificateRegistry.sol": "project/contracts/CertificateRegistry.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/CertificateRegistry.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\n/**\n * @title CertificateRegistry\n * @dev Smart contract to store certificate hashes on the blockchain\n * \n * This contract allows:\n * - Registering certificate hashes with a timestamp\n * - Verifying if a certificate hash exists on-chain\n * - Retrieving the timestamp when a certificate was registered\n */\ncontract CertificateRegistry {\n    // Mapping from certificate hash to timestamp (0 = not registered)\n    mapping(bytes32 => uint256) public certificateTimestamps;\n\n    // Event emitted when a certificate is registered\n    event CertificateRegistered(bytes32 indexed certHash, uint256 timestamp, address indexed registrar);\n\n    /**\n     * @dev Register a certificate hash on the blockchain\n     * @param certHash The SHA256 hash of the certificate\n     */\n    function registerCertificate(bytes32 certHash) external {\n        require(certificateTimestamps[certHash] == 0, \"Certificate already registered\");\n        \n        certificateTimestamps[certHash] = block.timestamp;\n        \n        emit CertificateRegistered(certHash, block.timestamp, msg.sender);\n    }\n\n    /**\n     * @dev Verify if a certificate hash exists on the blockchain\n     * @param certHash The SHA256 hash of the certificate\n     * @return timestamp The timestamp when the certificate was registered (0 = not found)\n     */\n    function verifyCertificate(bytes32 certHash) external view returns (uint256) {\n        return certificateTimestamps[certHash];\n    }\n\n    /**\n     * @dev Check if a certificate is registered\n     * @param certHash The SHA256 hash of the certificate\n     * @return bool True if the certificate is registered\n     */\n    function isRegistered(bytes32 certHash) external view returns (bool) {\n        return certificateTimestamps[certHash] > 0;\n    }\n}"
+      }
+    }
+  }
+}

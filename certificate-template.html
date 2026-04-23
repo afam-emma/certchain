@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>B.Sc Certificate</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&family=Inter:wght@300;400;500&display=swap');
+
+  body {
+    margin: 0;
+    background: #f5f5f5;
+  }
+
+  .certificate {
+    width: 1123px;
+    height: 794px;
+    margin: auto;
+    background: #fff;
+    position: relative;
+    padding: 60px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+  }
+
+  /* GOLD BORDER */
+  .certificate::before {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    border: 6px solid #c9a646;
+  }
+
+  .certificate::after {
+    content: "";
+    position: absolute;
+    inset: 30px;
+    border: 2px solid #e5d18a;
+  }
+
+  /* WATERMARK */
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    color: rgba(0,0,0,0.03);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 10px;
+    pointer-events: none;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .crest {
+    width: 80px;
+    height: 80px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+  }
+
+  .country {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .university {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .title {
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin-top: 10px;
+  }
+
+  /* BODY */
+  .content {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .presented {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
+  .text {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+
+  .degree {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0;
+  }
+
+  .course {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* SIGNATURES */
+  .signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    padding: 0 40px;
+  }
+
+  .sign {
+    text-align: center;
+    width: 200px;
+  }
+
+  .line {
+    border-top: 1px solid #000;
+    margin-bottom: 5px;
+  }
+
+  /* QR */
+  .qr {
+    position: absolute;
+    bottom: 60px;
+    right: 60px;
+    text-align: center;
+  }
+
+  .qr img {
+    width: 80px;
+  }
+
+  .qr small {
+    display: block;
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  /* FOOTER HASH */
+  .hash {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    font-size: 10px;
+    color: #666;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="certificate">
+
+  <div class="watermark">CERTCHAIN</div>
+
+  <div class="header">
+    <div class="crest"></div>
+    <div class="country">FEDERAL REPUBLIC OF NIGERIA</div>
+    <div class="university">{{UNIVERSITY_NAME}}</div>
+    <div class="title">CERTIFICATE OF BACHELOR OF SCIENCE</div>
+  </div>
+
+  <div class="content">
+    <div class="presented">This is to certify that</div>
+
+    <div class="name">{{FULL_NAME}}</div>
+
+    <div class="text">
+      having satisfied all the requirements for the award of the degree
+    </div>
+
+    <div class="degree">Bachelor of Science (B.Sc)</div>
+
+    <div class="text">in</div>
+
+    <div class="course">{{COURSE}}</div>
+
+    <div class="text">
+      Department of {{DEPARTMENT}}
+    </div>
+
+    <div class="text">
+      with {{GRADE}} on this day {{DATE}}
+    </div>
+  </div>
+
+  <div class="signatures">
+    <div class="sign">
+      <div class="line"></div>
+      <div>Vice Chancellor</div>
+    </div>
+
+    <div class="sign">
+      <div class="line"></div>
+      <div>Registrar</div>
+    </div>
+  </div>
+
+  <div class="qr">
+    <img src="{{QR_CODE_URL}}" />
+    <small>Scan to Verify</small>
+  </div>
+
+  <div class="hash">
+    Certificate ID: {{CERT_ID}} <br/>
+    Hash: {{CERT_HASH}}
+  </div>
+
+</div>
+
+</body>
+</html>
