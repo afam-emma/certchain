@@ -75,7 +75,7 @@ export function Header({ onToggleSidebar }: HeaderProps) {
                       <span className="mr-2 h-4 w-4">🔗</span>
                       <span>{isConnecting ? 'Connecting...' : 'Connect Wallet'}</span>
                     </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => signOut({ callbackUrl: 'https://certchain-9ggi.vercel.app/login' })}>
+                      <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })}>
                         <LogOut className="mr-2 h-4 w-4" />
                         <span>Log out</span>
                       </DropdownMenuItem>
@@ -90,7 +90,7 @@ export function Header({ onToggleSidebar }: HeaderProps) {
                       </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => signOut({ callbackUrl: 'https://certchain-9ggi.vercel.app/login' })}>
+                    <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })}>
                       <LogOut className="mr-2 h-4 w-4" />
                       <span>Log out</span>
                     </DropdownMenuItem>
