@@ -90,7 +90,7 @@ export default function Home() {
                   Start Issuing
                 </Button>
               </Link>
-              <form onSubmit={handleVerify} className="flex items-center gap-2">
+              <form onSubmit={handleVerify} className="flex sm:flex-col justify-center items-center gap-2">
                 <div className="relative">
                   <Input
                     type="text"
