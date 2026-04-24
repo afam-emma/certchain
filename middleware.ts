@@ -5,11 +5,11 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth
 
   if (isLoggedIn && nextUrl.pathname.startsWith('/login')) {
-    return Response.redirect(new URL('https://certchain-9ggi.vercel.app/dashboard', req.url))
+    return Response.redirect(new URL('/dashboard', req.url))
   }
 
   if (!isLoggedIn && nextUrl.pathname.startsWith('/dashboard')) {
-    return Response.redirect(new URL('https://certchain-9ggi.vercel.app/login', req.url))
+    return Response.redirect(new URL('/login', req.url))
   }
 })
 

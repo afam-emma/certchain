@@ -97,7 +97,8 @@ export default function Dashboard() {
       });
 
       if (!res.ok) {
-        throw new Error(`Preview failed: ${res.status}`);
+        const errorData = await res.json().catch(() => ({ error: `Server error ${res.status}` }));
+        throw new Error(errorData.error || `Preview failed: ${res.status}`);
       }
 
       const blob = await res.blob();

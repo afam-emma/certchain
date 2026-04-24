@@ -76,7 +76,7 @@ export async function POST(req: Request) {
                 "Content-Type": "application/pdf",
                 "Content-Disposition": preview 
                     ? "inline; filename=preview.pdf" 
-                    : `attachment; filename="${name.replace(/\\s+/g, "_")}_certificate.pdf"`,
+                    : `attachment; filename="${name.replace(/\s+/g, "_")}_certificate.pdf"`,
                 ...( !preview && { "X-Cert-Hash": certHash } ),
             },
         });
