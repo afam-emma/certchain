@@ -61,22 +61,19 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setMobileOpen(false)} />
+        <>
+          <div className="md:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setMobileOpen(false)} />
+          <div className="md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-xl border-b shadow-lg z-50">
+            <div className="flex flex-col p-4 space-y-4">
+              <Link href="/" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">Home</Link>
+              <Link href="/about" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">About</Link>
+              <Link href="/contact" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">Contact</Link>
+              <Link href="/login" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">Login</Link>
+              <Link href="/dashboard" className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all">Dashboard</Link>
+            </div>
+          </div>
+        </>
       )}
-      
-      {/* Desktop nav already in layout */}
-      
-      {/* Mobile menu */}
-      <div className="md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-xl border-b shadow-lg z-40">
-        <div className="flex flex-col p-4 space-y-4">
-          <Link href="/" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">Home</Link>
-          <Link href="/about" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">About</Link>
-          <Link href="/contact" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">Contact</Link>
-          <Link href="/login" className="py-2 px-4 font-medium hover:bg-gray-100 rounded-lg transition-colors">Login</Link>
-          <Link href="/dashboard" className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all">Dashboard</Link>
-  {/* Temp: No profile dropdown */}
-        </div>
-      </div>
     </>
   );
 }
