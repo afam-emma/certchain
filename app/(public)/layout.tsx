@@ -44,7 +44,7 @@ export default function PublicLayout({
                     <h3 className="font-semibold mb-4">Product</h3>
                     <ul className="space-y-2 text-gray-400">
                       <li><a href="/dashboard" className="hover:text-white transition-colors">Dashboard</a></li>
-                      <li><a href="/verify/demohash" className="hover:text-white transition-colors">Verify Demo</a></li>
+                      <li><a href="/#verify" className="hover:text-white transition-colors">Verify</a></li>
                     </ul>
                   </div>
                   <div>
