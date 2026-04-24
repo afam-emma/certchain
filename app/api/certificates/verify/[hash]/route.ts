@@ -70,7 +70,11 @@ export async function GET(
             certificate: {
                 recipient: cert.recipient,
                 course: cert.course,
+                universityName: cert.universityName,
+                department: cert.department,
+                grade: cert.grade,
                 issuedAt: cert.issuedAt,
+                certHash: cert.certHash,
                 template: cert.template?.name || 'Unknown Template',
             },
             blockchain: {
