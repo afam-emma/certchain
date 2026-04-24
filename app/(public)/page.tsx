@@ -64,14 +64,14 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-        {/* Animated Background Shapes */}
-        <section id="verify" className="relative py-32 bg-gradient-to-r from-indigo-50 to-purple-50">
+      {/* Animated Background Shapes */}
+      <section id="verify" className="relative py-32 bg-gradient-to-r from-indigo-50 to-purple-50">
         <div className="absolute inset-0">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-0"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
           <div className="absolute top-40 left-10 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-blob animation-delay-4000"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center py-20">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-gray-900 via-indigo-900 to-purple-900 bg-clip-text text-transparent mb-6 leading-tight">
@@ -79,7 +79,7 @@ export default function Home() {
               <span className="text-transparent bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 bg-clip-text">Certificates</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Issue tamper-proof, instantly verifiable certificates on blockchain. 
+              Issue tamper-proof, instantly verifiable certificates on blockchain.
               Trusted by universities, corporations, and certification authorities worldwide.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -99,10 +99,10 @@ export default function Home() {
                   />
                   <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
-                <Button 
+                <Button
                   type="submit"
-                  variant="outline" 
-                  size="lg" 
+                  variant="outline"
+                  size="lg"
                   className="text-xl px-6 py-6 border-2 border-gray-200 hover:bg-gray-50 shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   Verify
@@ -192,7 +192,7 @@ export default function Home() {
                   <CardTitle className="text-3xl font-bold text-gray-900 mb-6 mt-16">{step.title}</CardTitle>
                   <p className="text-lg text-gray-600 leading-relaxed">{step.desc}</p>
                   <div className="w-full bg-gray-200 rounded-full h-2 mt-8">
-                    <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-2 rounded-full transition-all duration-500" style={{width: `${(i+1)*25}%`}}></div>
+                    <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-2 rounded-full transition-all duration-500" style={{ width: `${(i + 1) * 25}%` }}></div>
                   </div>
                 </CardContent>
               </Card>
