@@ -60,7 +60,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   }
   },
   pages: {
-    signIn: '/login',
+    signIn: 'https://certchain-9ggi.vercel.app/login',
   },
 })
 
