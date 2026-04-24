@@ -65,8 +65,8 @@ export default function Home() {
     <>
       {/* Hero */}
       {/* Animated Background Shapes */}
-      <section id="verify" className="relative py-32 bg-gradient-to-r from-indigo-50 to-purple-50">
-        <div className="absolute inset-0">
+      <section id="verify" className="relative py-32 bg-gradient-to-r from-indigo-50 to-purple-50 overflow-hidden">
+        <div className="absolute inset-0 blob-shapes">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-0"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
           <div className="absolute top-40 left-10 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-blob animation-delay-4000"></div>

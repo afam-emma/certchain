@@ -16,6 +16,7 @@
 
 .animate-blob {
   animation: blob 7s infinite;
+  will-change: transform;
 }
 
 .animation-delay-2000 {
@@ -38,4 +39,9 @@
   .hero-gradient {
     @apply relative overflow-hidden;
   }
+}
+
+/* Prevent layout shift for animated elements */
+.blob-shapes {
+  contain: layout paint;
 }
