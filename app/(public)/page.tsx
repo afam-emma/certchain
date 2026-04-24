@@ -1,7 +1,11 @@
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { Shield, Zap, Download, Layout, Upload, FileText, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
 
 
 const features = [
@@ -47,6 +51,16 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const [verifyInput, setVerifyInput] = useState('');
+
+  const handleVerify = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (verifyInput.trim()) {
+      router.push(`/verify/${verifyInput.trim()}`);
+    }
+  };
+
   return (
     <>
       {/* Hero */}
@@ -74,11 +88,26 @@ export default function Home() {
                   Start Issuing
                 </Button>
               </Link>
-              <Link href="/verify/demo123">
-                <Button variant="outline" size="lg" className="text-xl px-12 py-6 border-2 border-gray-200 hover:bg-gray-50 shadow-xl hover:shadow-2xl transition-all duration-300">
-                  Try Verify Demo
+              <form onSubmit={handleVerify} className="flex items-center gap-2">
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="Enter certificate hash..."
+                    value={verifyInput}
+                    onChange={(e) => setVerifyInput(e.target.value)}
+                    className="text-lg px-4 py-6 w-64 md:w-80 border-2 border-gray-200 focus:border-indigo-500 shadow-xl"
+                  />
+                  <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                </div>
+                <Button 
+                  type="submit"
+                  variant="outline" 
+                  size="lg" 
+                  className="text-xl px-6 py-6 border-2 border-gray-200 hover:bg-gray-50 shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  Verify
                 </Button>
-              </Link>
+              </form>
             </div>
           </div>
         </div>
